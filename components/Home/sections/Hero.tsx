@@ -30,7 +30,7 @@ export default function Hero() {
                     <span className="badge bg-white/10 text-white backdrop-blur">
                         Organizacja patriotyczna
                     </span>
-                    <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.05] sm:text-6xl lg:text-7xl text-shadow-xs">
+                    <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.05] sm:text-6xl lg:text-7xl text-shadow-xs text-white outline-accent text-shadow-accent">
                         Strzelec Rzeszów
                     </h1>
                     <p className="mt-5 max-w-xl text-lg text-neutral-200 sm:text-xl">

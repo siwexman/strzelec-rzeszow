@@ -17,8 +17,12 @@ export function Logo({ className = '' }: { className?: string }) {
                 </span>
             </span> */}
 
-            <div className="h-9 w-9">
-                <Image src={logo} alt="Logo JS2021" className="object-cover" />
+            <div className="h-12 w-16">
+                <Image
+                    src={logo}
+                    alt="Logo JS2021"
+                    className="object-cover rounded-lg"
+                />
             </div>
             <span className="flex flex-col leading-none">
                 <span className="font-display text-base font-bold text-neutral-900">

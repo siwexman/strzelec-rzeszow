@@ -8,7 +8,7 @@ interface State<T> {
 
 export function useAsync<T>(
     fn: () => Promise<T>,
-    deps: unknown[] = [],
+    // deps: unknown[] = [],
 ): State<T> & { refetch: () => void } {
     const [state, setState] = useState<State<T>>({
         data: null,
@@ -19,7 +19,9 @@ export function useAsync<T>(
 
     useEffect(() => {
         let active = true;
-        setState(s => ({ ...s, loading: true, error: null }));
+        Promise.resolve().then(() => {
+            if (active) setState(s => ({ ...s, loading: true, error: null }));
+        });
         fn()
             .then(data => {
                 if (active) setState({ data, loading: false, error: null });
@@ -35,8 +37,7 @@ export function useAsync<T>(
         return () => {
             active = false;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [...deps, nonce]);
+    }, [nonce, fn]);
 
     return { ...state, refetch: () => setNonce(n => n + 1) };
 }

@@ -3,7 +3,6 @@ import {
     FaClock,
     FaEnvelope,
     FaFlag,
-    FaGlobe,
     FaHandHoldingHeart,
     FaMapMarkerAlt,
     FaPhoneAlt,
@@ -106,7 +105,7 @@ const LEADERSHIP = [
     },
 ];
 
-export default function ONasPage() {
+export default function About() {
     return (
         <>
             <section className="section pb-0">
@@ -114,11 +113,13 @@ export default function ONasPage() {
                     <Reveal>
                         <p className="eyebrow">O nas</p>
                         <h1 className="mt-2 max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl">
-                            Związek Strzelecki „Strzelec” Józefa Piłsudskiego
+                            Jednostka Strzelecka 2021
+                            <p className="text-2xl">
+                                im. płk. Leopolda Lisa-Kuli w Rzeszowie
+                            </p>
                         </h1>
                         <p className="mt-3 max-w-2xl text-lg text-neutral-600">
-                            Jednostka Strzelecka 2021 im. płk Leopolda Lisa-Kuli
-                            w Rzeszowie
+                            Związku Strzeleckiego „Strzelec” Józefa Piłsudskiego
                         </p>
                     </Reveal>
 
@@ -145,17 +146,6 @@ export default function ONasPage() {
                                     strzelec.rzeszow@op.pl
                                 </a>
                             </div>
-                            <div className="flex items-start gap-3">
-                                <FaGlobe className="mt-1 shrink-0 text-accent" />
-                                <a
-                                    href="https://www.strzelec.erzeszow.pl"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-neutral-700 hover:text-primary"
-                                >
-                                    www.strzelec.erzeszow.pl
-                                </a>
-                            </div>
                         </div>
                     </Reveal>
                 </div>
@@ -173,7 +163,7 @@ export default function ONasPage() {
                                     Podaruj młodzieży strzeleckiej i orlętom
                                     1,5% podatku
                                 </h2>
-                                <p className="mt-2 text-white/90">
+                                <p className="mt-2 text-lg text-white/90">
                                     Wpisując w formularzu PIT numer KRS{' '}
                                     <span className="font-semibold">
                                         0000283993

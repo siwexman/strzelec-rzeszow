@@ -1,9 +1,12 @@
+// 'use client';
+
 import Link from 'next/link';
 
 import { FaArrowRight } from 'react-icons/fa';
 
 import { SectionHeading } from '@/components/layout/SectionHeading';
 import NewsComponent from '@/components/News/NewsComponent';
+import { get3Posts } from '@/lib/queries';
 
 export default function News() {
     return (
@@ -14,11 +17,13 @@ export default function News() {
                         eyebrow="Aktualności"
                         title="Najnowsze wiadomości"
                     />
+                </div>
+                <NewsComponent getPosts={get3Posts} />
+                <div className="flex justify-center pt-4">
                     <Link href="/aktualnosci" className="btn-ghost">
                         Wszystkie <FaArrowRight size={16} />
                     </Link>
                 </div>
-                <NewsComponent />
             </div>
         </section>
     );

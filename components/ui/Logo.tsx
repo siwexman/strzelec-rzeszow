@@ -24,13 +24,17 @@ export function Logo({ className = '' }: { className?: string }) {
                     className="object-cover rounded-lg"
                 />
             </div>
-            <span className="flex flex-col leading-none">
-                <span className="font-display text-base font-bold text-neutral-900">
+            <span className="flex flex-col leading-none text-center text-gray-600">
+                <span className="font-mono font-extrabold text-3xl leading-none">
+                    JS
+                </span>
+                <span className="leading-none font-display">2021</span>
+                {/* <span className="font-display text-base font-bold text-neutral-900">
                     Strzelec
                 </span>
                 <span className="text-[11px] font-semibold uppercase tracking-widest text-primary">
                     Rzeszów
-                </span>
+                </span> */}
             </span>
         </Link>
     );

@@ -1,22 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { FaArrowRight, FaCalendar, FaClock } from 'react-icons/fa';
+import { FaArrowRight, FaCalendar } from 'react-icons/fa';
 
-import type { NewsPostShort } from '@/types';
-import { formatDate, readingTime } from '@/utils/format';
+import { formatDate } from '@/utils/format';
+import { Post } from '@/lib/types';
 
-export function NewsCard({ post }: { post: NewsPostShort }) {
+export function NewsCard({ post }: { post: Post }) {
+    const image =
+        post._embedded && post._embedded['wp:featuredmedia']
+            ? post._embedded['wp:featuredmedia'][0]
+            : post.images && post.images.length > 0
+              ? post.images[0]
+              : undefined;
+
     return (
         <Link
             href={`/aktualnosci/${post.slug}`}
             className="card card-hover group flex flex-col overflow-hidden"
         >
             <div className="aspect-16/10 overflow-hidden bg-neutral-100">
-                {post.image ? (
+                {image ? (
                     <Image
-                        src={`/${post.image}`}
-                        alt={post.title}
+                        src={image.source_url}
+                        alt={image.alt_text}
                         width={380}
                         height={380}
                         sizes="40vw"
@@ -34,11 +41,11 @@ export function NewsCard({ post }: { post: NewsPostShort }) {
                     )} */}
                     <span className="flex items-center gap-1 text-neutral-400">
                         <FaCalendar size={14} />
-                        {formatDate(post.publishedAt)}
+                        {formatDate(post.date)}
                     </span>
                 </div>
                 <h3 className="mt-3 text-lg font-bold leading-snug text-neutral-900 group-hover:text-primary">
-                    {post.title}
+                    {post.title.rendered}
                 </h3>
                 {/* {post.excerpt && (
                     <p className="mt-2 line-clamp-2 text-sm text-neutral-600">
@@ -46,9 +53,9 @@ export function NewsCard({ post }: { post: NewsPostShort }) {
                     </p>
                 )} */}
                 <div className="mt-4 flex items-center justify-between text-xs text-neutral-400">
-                    <span className="flex items-center gap-1">
+                    {/* <span className="flex items-center gap-1">
                         <FaClock size={14} /> {readingTime(post.description)}
-                    </span>
+                    </span> */}
                     <span className="flex items-center gap-1 font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
                         Czytaj <FaArrowRight size={14} />
                     </span>

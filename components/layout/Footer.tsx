@@ -70,7 +70,7 @@ export function Footer() {
                             <ul className="mt-4 space-y-3 text-sm">
                                 <li className="flex items-start gap-2.5">
                                     <FaMapPin />
-                                    <span>{'Rzeszów'}</span>
+                                    <span>{'Rzeszów, ul. Jagiellońska 6'}</span>
                                 </li>
                                 <li className="flex items-center gap-2.5">
                                     <FaEnvelope />
@@ -100,8 +100,10 @@ export function Footer() {
                         © {new Date().getFullYear()} Strzelec Rzeszów. Wszelkie
                         prawa zastrzeżone.
                     </p>
-                    {/* TODO: add link */}
-                    <Link className="mt-2 sm:mt-0 hover:underline" href={''}>
+                    <Link
+                        className="mt-2 sm:mt-0 hover:underline"
+                        href="dashboard"
+                    >
                         panel administracyjny
                     </Link>
                 </div>

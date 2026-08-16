@@ -62,7 +62,7 @@ const PEOPLE = [
     },
 ];
 
-export default function KontaktPage() {
+export default function Contact() {
     return (
         <>
             <section className="section pb-0">

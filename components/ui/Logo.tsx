@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logo from '@/assets/images/logo JS 2021.png';
+import logo from '@/assets/images/logos/Logo Oddziałówka Lis-Kula.png';
 
 export function Logo({ className = '' }: { className?: string }) {
     return (
@@ -17,11 +17,15 @@ export function Logo({ className = '' }: { className?: string }) {
                 </span>
             </span> */}
 
-            <div className="h-12 w-16">
+            <div className="relative w-12 h-12">
                 <Image
                     src={logo}
+                    // width={36}
+                    // height={48}
+                    // fill
+                    height={48}
                     alt="Logo JS2021"
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg mx-auto"
                 />
             </div>
             <span className="flex flex-col leading-none text-center text-gray-600">

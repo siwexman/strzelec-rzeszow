@@ -27,7 +27,10 @@ export function PostForm({
     initial?: PostFormInitial;
     submitLabel: string;
 }) {
-    const [state, formAction, pending] = useActionState<FormState, FormData>(action, null);
+    const [state, formAction, pending] = useActionState<FormState, FormData>(
+        action,
+        null,
+    );
 
     const [content, setContent] = useState(initial?.content ?? '');
     const [featuredPreview, setFeaturedPreview] = useState<string | null>(
@@ -38,20 +41,30 @@ export function PostForm({
 
     useEffect(() => {
         return () => {
-            if (featuredPreview?.startsWith('blob:')) URL.revokeObjectURL(featuredPreview);
+            if (featuredPreview?.startsWith('blob:'))
+                URL.revokeObjectURL(featuredPreview);
             galleryPreviews.forEach(url => URL.revokeObjectURL(url));
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const remainingGallery = (initial?.gallery ?? []).filter(g => !removedIds.includes(g.id));
+    const remainingGallery = (initial?.gallery ?? []).filter(
+        g => !removedIds.includes(g.id),
+    );
 
     return (
         <form action={formAction} className="space-y-6">
             {initial && <input type="hidden" name="id" value={initial.id} />}
-            {initial && <input type="hidden" name="slug" value={initial.slug} />}
+            {initial && (
+                <input type="hidden" name="slug" value={initial.slug} />
+            )}
             {removedIds.map(id => (
-                <input key={id} type="hidden" name="removedMediaIds" value={id} />
+                <input
+                    key={id}
+                    type="hidden"
+                    name="removedMediaIds"
+                    value={id}
+                />
             ))}
 
             {state?.error && (
@@ -61,7 +74,10 @@ export function PostForm({
             )}
 
             <div>
-                <label htmlFor="title" className="mb-1.5 block text-sm font-medium text-neutral-700">
+                <label
+                    htmlFor="title"
+                    className="mb-1.5 block text-sm font-medium text-neutral-700"
+                >
                     Tytuł
                 </label>
                 <input
@@ -75,7 +91,9 @@ export function PostForm({
             </div>
 
             <div>
-                <span className="mb-1.5 block text-sm font-medium text-neutral-700">Treść</span>
+                <span className="mb-1.5 block text-sm font-medium text-neutral-700">
+                    Treść
+                </span>
                 <input type="hidden" name="content" value={content} />
                 <RichTextEditor value={content} onChange={setContent} />
             </div>
@@ -88,11 +106,11 @@ export function PostForm({
                     Zdjęcie główne
                 </label>
                 {featuredPreview && (
-                    <div className="mb-2 aspect-16/9 w-full max-w-xs overflow-hidden rounded-xl bg-neutral-100">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                    <div className="mb-2 aspect-video w-full max-w-xs overflow-hidden rounded-xl bg-neutral-100 relative">
+                        <Image
                             src={featuredPreview}
                             alt=""
+                            fill
                             className="h-full w-full object-cover"
                         />
                     </div>
@@ -111,7 +129,9 @@ export function PostForm({
             </div>
 
             <div>
-                <span className="mb-1.5 block text-sm font-medium text-neutral-700">Galeria</span>
+                <span className="mb-1.5 block text-sm font-medium text-neutral-700">
+                    Galeria
+                </span>
 
                 {remainingGallery.length > 0 && (
                     <div className="mb-3 grid grid-cols-3 gap-3 sm:grid-cols-4">
@@ -129,7 +149,9 @@ export function PostForm({
                                 />
                                 <button
                                     type="button"
-                                    onClick={() => setRemovedIds(ids => [...ids, g.id])}
+                                    onClick={() =>
+                                        setRemovedIds(ids => [...ids, g.id])
+                                    }
                                     aria-label="Usuń zdjęcie z galerii"
                                     className="absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity group-hover:opacity-100 cursor-pointer"
                                 >
@@ -145,10 +167,14 @@ export function PostForm({
                         {galleryPreviews.map((src, i) => (
                             <div
                                 key={i}
-                                className="aspect-square overflow-hidden rounded-xl bg-neutral-100"
+                                className="aspect-square overflow-hidden rounded-xl bg-neutral-100 relative"
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={src} alt="" className="h-full w-full object-cover" />
+                                <Image
+                                    src={src}
+                                    fill
+                                    alt=""
+                                    className="h-full w-full object-cover"
+                                />
                             </div>
                         ))}
                     </div>
@@ -161,28 +187,39 @@ export function PostForm({
                     multiple
                     onChange={e => {
                         const files = Array.from(e.target.files ?? []);
-                        setGalleryPreviews(files.map(f => URL.createObjectURL(f)));
+                        setGalleryPreviews(
+                            files.map(f => URL.createObjectURL(f)),
+                        );
                     }}
                     className="block w-full text-sm text-neutral-600 file:mr-4 file:rounded-full file:border-0 file:bg-primary-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-700 hover:file:bg-primary-100"
                 />
             </div>
 
-            <div>
-                <label htmlFor="status" className="mb-1.5 block text-sm font-medium text-neutral-700">
+            {/* <div>
+                <label
+                    htmlFor="status"
+                    className="mb-1.5 block text-sm font-medium text-neutral-700"
+                >
                     Status
                 </label>
                 <select
                     id="status"
                     name="status"
-                    defaultValue={initial?.status === 'draft' ? 'draft' : 'publish'}
+                    defaultValue={
+                        initial?.status === 'draft' ? 'draft' : 'publish'
+                    }
                     className="rounded-xl border border-neutral-200 px-4 py-2.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                     <option value="publish">Opublikowany</option>
                     <option value="draft">Szkic</option>
                 </select>
-            </div>
+            </div> */}
 
-            <button type="submit" disabled={pending} className="btn-primary disabled:opacity-60">
+            <button
+                type="submit"
+                disabled={pending}
+                className="btn-primary disabled:opacity-60"
+            >
                 {pending ? 'Zapisywanie…' : submitLabel}
             </button>
         </form>

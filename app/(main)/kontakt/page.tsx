@@ -10,6 +10,7 @@ import {
 import { SectionHeading } from '@/components/layout/SectionHeading';
 import { Reveal } from '@/components/ui/animation/Reveal';
 import towPrzyjaciolLogo from '@/assets/images/logos/TowPrzyjaciol.png';
+import SectionHeaderImg from '@/components/layout/SectionHeaderImg';
 
 export const metadata: Metadata = {
     title: 'Kontakt',
@@ -47,12 +48,27 @@ const PEOPLE = [
         email: 'ggajewski53@gmail.com',
     },
     {
+        role: 'Kapelan ZS Jednostki Strzeleckiej 2021',
+        rank: 'mł. insp. ZS',
+        name: 'ks. Stanisław Szcząchor',
+        phone: '509 859 613',
+        email: 'stachu1973@interia.pl',
+    },
+    {
+        role: 'Kapelan ZS Jednostki Strzeleckiej 2021',
+        rank: 'mł. insp. ZS',
+        name: 'ks. Bodgan Tęcza',
+        phone: '881 964 231',
+        email: 'bogdantecza7@gmail.com',
+    },
+    {
         role: 'Zastępca Dowódcy Orląt ZS Jednostki Strzeleckiej 2021',
         rank: 'st. sierż. ZS',
         name: 'Anna Bator',
         phone: '795 507 061',
         email: 'annbator@interia.pl',
     },
+
     {
         role: 'Oficer ds. Mediów Jednostki Strzeleckiej 2021',
         rank: 'insp. ZS',
@@ -65,52 +81,7 @@ const PEOPLE = [
 export default function Contact() {
     return (
         <>
-            <section className="section pb-0">
-                <div className="container-content">
-                    <Reveal>
-                        <p className="eyebrow">Kontakt</p>
-                        <h1 className="mt-2 max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl">
-                            Skontaktuj się z nami
-                        </h1>
-                        <p className="mt-3 max-w-2xl text-lg text-neutral-600">
-                            Jednostka Strzelecka 2021 im. płk Leopolda Lisa-Kuli
-                            w Rzeszowie Związku Strzeleckiego „Strzelec” Józefa
-                            Piłsudskiego
-                        </p>
-                    </Reveal>
-
-                    <Reveal delay={0.1}>
-                        <div className="mt-8 grid gap-4 rounded-2xl bg-neutral-50 p-6 sm:grid-cols-2 lg:grid-cols-3">
-                            <div className="flex items-start gap-3">
-                                <FaMapMarkerAlt className="mt-1 shrink-0 text-accent" />
-                                <a
-                                    href="https://www.google.com/maps/search/?api=1&query=Rzesz%C3%B3w%2C%20ul.%20Jagiello%C5%84ska%206"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-neutral-700 hover:text-primary"
-                                >
-                                    35-025 Rzeszów, ul. Jagiellońska 6
-                                </a>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <FaEnvelope className="mt-1 shrink-0 text-accent" />
-                                <a
-                                    href="mailto:strzelec.rzeszow@op.pl"
-                                    className="text-sm text-neutral-700 hover:text-primary"
-                                >
-                                    strzelec.rzeszow@op.pl
-                                </a>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <FaPhoneAlt className="mt-1 shrink-0 text-accent" />
-                                <span className="text-sm text-neutral-700">
-                                    607 995 335, 505 034 088
-                                </span>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
+            <SectionHeaderImg page="kontakt" />
 
             <section className="section">
                 <div className="container-content">
@@ -203,7 +174,7 @@ export default function Contact() {
                                 <p className="mt-2 text-sm text-neutral-600">
                                     Bank Nowy, numer konta:
                                 </p>
-                                <p className="mt-1 break-all font-mono text-sm font-semibold text-neutral-800">
+                                <p className="mt-1 break-all font-mono font-semibold text-neutral-800">
                                     57 8642 1126 2012 1122 4749 0001
                                 </p>
                                 <p className="mt-4 text-sm text-neutral-600">

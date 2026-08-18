@@ -1,15 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-    FaFacebook,
-    FaInstagram,
-    FaYoutube,
-    FaEnvelope,
-    FaPhone,
-    FaMapPin,
-} from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapPin } from 'react-icons/fa';
 
 import logo from '@/assets/images/logo JS 2021.png';
+import SocialIcons from '../ui/SocialIcons';
 
 export function Footer() {
     return (
@@ -34,18 +28,7 @@ export function Footer() {
                                 'Organizacja patriotyczna, paramilitarna i wychowawcza.'
                             }
                         </p>
-                        <div className="mt-5 flex gap-2">
-                            {/* TODO: dodać linki */}
-                            <SocialLink href={'#'} label="Facebook">
-                                <FaFacebook />
-                            </SocialLink>
-                            <SocialLink href={'#'} label="Instagram">
-                                <FaInstagram />
-                            </SocialLink>
-                            <SocialLink href={'#'} label="YouTube">
-                                <FaYoutube />
-                            </SocialLink>
-                        </div>
+                        <SocialIcons />
                     </div>
 
                     <div className="md:pl-12">
@@ -65,7 +48,6 @@ export function Footer() {
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
                             Kontakt
                         </h3>
-                        {/* TODO: add data */}
                         <div className="w-52 md:w-auto mx-auto">
                             <ul className="mt-4 space-y-3 text-sm">
                                 <li className="flex items-start gap-2.5">
@@ -81,7 +63,7 @@ export function Footer() {
                                         strzelec.rzeszow@op.pl
                                     </a>
                                 </li>
-                                <li className="flex items-center gap-2.5">
+                                {/* <li className="flex items-center gap-2.5">
                                     <FaPhone />
                                     <a
                                         href={`tel:${''}`}
@@ -89,7 +71,7 @@ export function Footer() {
                                     >
                                         999555666
                                     </a>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>
@@ -128,27 +110,5 @@ function FooterLink({
                 {children}
             </Link>
         </li>
-    );
-}
-
-function SocialLink({
-    href,
-    label,
-    children,
-}: {
-    href: string;
-    label: string;
-    children: React.ReactNode;
-}) {
-    return (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={label}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-accent"
-        >
-            {children}
-        </a>
     );
 }

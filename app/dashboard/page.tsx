@@ -1,17 +1,32 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 import { getAllPosts } from '@/lib/queries';
+import { getSession } from '@/lib/session';
 import { formatDate } from '@/utils/format';
 import { DeletePostButton } from '@/components/dashboard/DeletePostButton';
 
 export default async function DashboardPage() {
-    const { posts } = await getAllPosts(1, 10);
+    const session = await getSession();
+
+    if (!session) {
+        redirect('/login');
+    }
+
+    const auth = Buffer.from(
+        `${session.username}:${session.appPassword}`,
+    ).toString('base64');
+
+    const { posts } = await getAllPosts(1, 10, '', auth);
+    console.log(posts);
 
     return (
         <div>
             <div className="mb-6 flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-neutral-900">Ostatnie aktualności</h1>
+                <h1 className="text-2xl font-bold text-neutral-900">
+                    Ostatnie aktualności
+                </h1>
                 <Link href="/dashboard/posts/new" className="btn-primary">
                     + Nowy wpis
                 </Link>
@@ -60,7 +75,10 @@ export default async function DashboardPage() {
                                     >
                                         Edytuj
                                     </Link>
-                                    <DeletePostButton id={post.id} title={post.title.rendered} />
+                                    <DeletePostButton
+                                        id={post.id}
+                                        title={post.title.rendered}
+                                    />
                                 </div>
                             </div>
                         );

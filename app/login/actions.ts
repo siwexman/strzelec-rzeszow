@@ -7,7 +7,10 @@ import { createSession, destroySession } from '@/lib/session';
 
 export type LoginState = { error: string } | null;
 
-export async function login(_prevState: LoginState, formData: FormData): Promise<LoginState> {
+export async function login(
+    _prevState: LoginState,
+    formData: FormData,
+): Promise<LoginState> {
     const username = formData.get('username')?.toString().trim();
     const password = formData.get('password')?.toString();
 
@@ -30,5 +33,5 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
 
 export async function logout(): Promise<void> {
     await destroySession();
-    redirect('/login');
+    redirect('/');
 }

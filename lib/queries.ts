@@ -3,12 +3,13 @@
 import { Post, PostsReturned, WPImage, WPMedia } from './types';
 
 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
-const revalidateTime = 86400; // day in seconds
+const revalidateTime = 600; // 10min in  seconds
 
 export async function getAllPosts(
     pageNumber: number = 1,
     perPage: number = 9,
     searchTerm: string = '',
+    auth?: string,
 ): Promise<PostsReturned> {
     const params = new URLSearchParams({
         per_page: perPage.toString(),
@@ -20,6 +21,11 @@ export async function getAllPosts(
     const res = await fetch(
         `${baseUrl}/wp-json/wp/v2/posts?_embed&${params.toString()}`,
         {
+            ...(auth && {
+                headers: {
+                    Authorization: `Basic ${auth}`,
+                },
+            }),
             next: {
                 revalidate: revalidateTime,
             },
@@ -72,7 +78,7 @@ async function getImages(
 ) {
     const res = await fetch(`${baseUrl}/wp-json/wp/v2/media?parent=${postId}`, {
         next: {
-            revalidate: 60,
+            revalidate: revalidateTime,
         },
     });
 

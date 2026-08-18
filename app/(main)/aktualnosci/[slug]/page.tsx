@@ -62,7 +62,7 @@ export default async function NewsDetailPage({ params }: Props) {
                     <div
                         className="prose-content"
                         dangerouslySetInnerHTML={{
-                            __html: post.excerpt.rendered,
+                            __html: post.content.rendered,
                         }}
                     />
                 </Reveal>

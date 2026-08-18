@@ -29,7 +29,7 @@ function ToolbarButton({
             onClick={onClick}
             aria-label={label}
             aria-pressed={active}
-            className={`btn-ghost !rounded-lg !px-2.5 !py-1.5 ${active ? 'bg-neutral-200 text-neutral-900' : ''}`}
+            className={`btn-ghost rounded-lg! px-2.5! py-1.5! ${active ? 'bg-neutral-200 text-neutral-900' : ''}`}
         >
             {children}
         </button>
@@ -38,14 +38,21 @@ function ToolbarButton({
 
 function Toolbar({ editor }: { editor: Editor }) {
     const setLink = () => {
-        const previousUrl = editor.getAttributes('link').href as string | undefined;
+        const previousUrl = editor.getAttributes('link').href as
+            | string
+            | undefined;
         const url = window.prompt('Adres URL linku', previousUrl ?? 'https://');
         if (url === null) return;
         if (url === '') {
             editor.chain().focus().unsetLink().run();
             return;
         }
-        editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+        editor
+            .chain()
+            .focus()
+            .extendMarkRange('link')
+            .setLink({ href: url })
+            .run();
     };
 
     return (
@@ -67,7 +74,9 @@ function Toolbar({ editor }: { editor: Editor }) {
             <ToolbarButton
                 label="Nagłówek"
                 active={editor.isActive('heading', { level: 2 })}
-                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 2 }).run()
+                }
             >
                 <FaHeading size={14} />
             </ToolbarButton>
@@ -85,7 +94,11 @@ function Toolbar({ editor }: { editor: Editor }) {
             >
                 <FaListOl size={14} />
             </ToolbarButton>
-            <ToolbarButton label="Dodaj link" active={editor.isActive('link')} onClick={setLink}>
+            <ToolbarButton
+                label="Dodaj link"
+                active={editor.isActive('link')}
+                onClick={setLink}
+            >
                 <FaLink size={14} />
             </ToolbarButton>
             <ToolbarButton
@@ -119,7 +132,7 @@ export function RichTextEditor({
 
     if (!editor) {
         return (
-            <div className="min-h-[280px] animate-pulse rounded-xl border border-neutral-200 bg-neutral-50" />
+            <div className="min-h-70 animate-pulse rounded-xl border border-neutral-200 bg-neutral-50" />
         );
     }
 

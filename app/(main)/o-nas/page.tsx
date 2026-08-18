@@ -1,10 +1,10 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
     FaClock,
     FaEnvelope,
     FaFlag,
     FaHandHoldingHeart,
-    FaMapMarkerAlt,
     FaPhoneAlt,
     FaQuoteLeft,
     FaUserGraduate,
@@ -13,6 +13,9 @@ import {
 
 import { SectionHeading } from '@/components/layout/SectionHeading';
 import { Reveal } from '@/components/ui/animation/Reveal';
+import SectionHeaderImg from '@/components/layout/SectionHeaderImg';
+
+import logoJS from '@/assets/images/logos/Logo ZS Strzelec JP Komendant Główny.png';
 
 export const metadata: Metadata = {
     title: 'O nas',
@@ -67,24 +70,52 @@ const STRUCTURE = [
         name: 'Paweł Rejman',
     },
     {
-        role: 'Szef Szkolenia JS 2021',
-        rank: 'st. chor. ZS',
-        name: 'Jan Ślązak',
+        role: 'Kapelan ZS JS 2021',
+        rank: 'mł. insp. ZS',
+        name: 'ks. Stanisław Szcząchor',
     },
     {
-        role: 'Zastępca Szefa Szkolenia JS 2021',
+        role: 'Kapelan ZS JS 2021 ds. Orląt ZS',
+        rank: 'mł. insp. ZS',
+        name: 'ks. Bogdan Tęcza',
+    },
+    {
+        role: 'Dowódca Pododdziału ZS w Kolbuszowej',
+        rank: 'st. insp. ZS',
+        name: 'Piotr Panek',
+    },
+    {
+        role: 'Dowódca Pododdziału Orląt ZS w Tyczynie',
+        rank: 'mł. insp. ZS',
+        name: 'Jacek Surówka',
+    },
+    {
+        role: 'Dowódca Pododdziału Orląt ZS przy SP nr 16 w Rzeszowie',
         rank: 'chor. ZS',
-        name: 'Klaudia Kuźniar',
+        name: 'Natalia Rokosz',
+    },
+    {
+        role: 'Dowódca Pododdziału ZS przy Szkole Podstawowej w Głogowie Młp.',
+        name: 'Anna Łącka',
+    },
+    {
+        role: 'Dowódca Pododdziału ZS i Orląt ZS przy  Zespole Szkół w Jasionce',
+        name: 'Paweł Wiktor',
     },
     {
         role: 'Szef Logistyki JS 2021',
-        rank: 'chor. ZS',
+        rank: 'st. chor. ZS',
         name: 'Jerzy Gajewski',
     },
     {
         role: 'Szef Zabezpieczenia Medycznego JS 2021',
         rank: 'sierż. ZS',
         name: 'Barbara Furtek-Leśniak',
+    },
+    {
+        role: 'Magazynier JS 2021',
+        rank: 'sierż. ZS',
+        name: 'Hubert Biały',
     },
 ];
 
@@ -108,66 +139,25 @@ const LEADERSHIP = [
 export default function About() {
     return (
         <>
-            <section className="section pb-0">
-                <div className="container-content">
-                    <Reveal>
-                        <p className="eyebrow">O nas</p>
-                        <h1 className="mt-2 max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl">
-                            Jednostka Strzelecka 2021
-                            <p className="text-2xl">
-                                im. płk. Leopolda Lisa-Kuli w Rzeszowie
-                            </p>
-                        </h1>
-                        <p className="mt-3 max-w-2xl text-lg text-neutral-600">
-                            Związku Strzeleckiego „Strzelec” Józefa Piłsudskiego
-                        </p>
-                    </Reveal>
-
-                    <Reveal delay={0.1}>
-                        <div className="mt-8 grid gap-4 rounded-2xl bg-neutral-50 p-6 sm:grid-cols-2 lg:grid-cols-4">
-                            <div className="flex items-start gap-3">
-                                <FaMapMarkerAlt className="mt-1 shrink-0 text-accent" />
-                                <span className="text-sm text-neutral-700">
-                                    35-025 Rzeszów, ul. Jagiellońska 6
-                                </span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <FaPhoneAlt className="mt-1 shrink-0 text-accent" />
-                                <span className="text-sm text-neutral-700">
-                                    607 995 335, 505 034 088
-                                </span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <FaEnvelope className="mt-1 shrink-0 text-accent" />
-                                <a
-                                    href="mailto:strzelec.rzeszow@op.pl"
-                                    className="text-sm text-neutral-700 hover:text-primary"
-                                >
-                                    strzelec.rzeszow@op.pl
-                                </a>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
+            <SectionHeaderImg page="o-nas" />
 
             <section className="section">
                 <div className="container-content">
                     <Reveal>
-                        <div className="flex flex-col items-start gap-6 rounded-3xl bg-accent px-8 py-10 text-white sm:flex-row sm:items-center sm:px-12">
-                            <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15">
-                                <FaHandHoldingHeart size={26} />
+                        <div className="rounded-3xl bg-accent px-4 py-6 text-center text-white sm:flex-row sm:items-center sm:px-12">
+                            <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15">
+                                <FaHandHoldingHeart size={36} />
                             </div>
-                            <div>
+                            <div className="pt-4">
                                 <h2 className="text-xl font-bold sm:text-2xl">
                                     Podaruj młodzieży strzeleckiej i orlętom
                                     1,5% podatku
                                 </h2>
                                 <p className="mt-2 text-lg text-white/90">
                                     Wpisując w formularzu PIT numer KRS{' '}
-                                    <span className="font-semibold">
-                                        0000283993
-                                    </span>
+                                </p>
+                                <p className="font-semibold text-4xl pt-1 text-center">
+                                    0000283993
                                 </p>
                             </div>
                         </div>
@@ -247,9 +237,11 @@ export default function About() {
                         {STRUCTURE.map((person, i) => (
                             <Reveal key={person.name} delay={(i % 3) * 0.08}>
                                 <div className="card card-hover h-full p-6">
-                                    <p className="badge-neutral">
-                                        {person.rank}
-                                    </p>
+                                    {person.rank && (
+                                        <p className="badge-neutral">
+                                            {person.rank}
+                                        </p>
+                                    )}
                                     <h3 className="mt-3 font-bold">
                                         {person.name}
                                     </h3>
@@ -265,9 +257,16 @@ export default function About() {
 
             <section className="section bg-neutral-50">
                 <div className="container-content">
+                    <div className="flex justify-center pb-4">
+                        <Image
+                            src={logoJS}
+                            alt="Logo JS2021"
+                            width={150}
+                            height={150}
+                        />
+                    </div>
                     <SectionHeading
                         align="center"
-                        eyebrow="Władze"
                         title="Komenda Główna i Okręg"
                         description="Związek Strzelecki „Strzelec” Józefa Piłsudskiego — struktury nadrzędne."
                     />

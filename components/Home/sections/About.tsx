@@ -15,7 +15,8 @@ export default function About() {
                                 Wychowujemy młodych Polaków od pokoleń
                             </h2>
                             <p className="mt-5 text-lg text-neutral-600">
-                                Strzelec Rzeszów to organizacja, która łączy
+                                Związek Strzelecki &quot;Strzelec&quot; Józefa
+                                Piłsudskiego to organizacja, która łączy
                                 tradycje II Rzeczpospolitej z nowoczesnym
                                 wychowaniem obywatelskim. Prowadzimy szkolenia
                                 dla młodzieży i dorosłych, uczymy pierwszej
@@ -35,23 +36,23 @@ export default function About() {
                     <Reveal delay={0.15}>
                         <div className="grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-card sm:p-10">
                             <AnimatedCounter
-                                value={15}
+                                value={35}
                                 suffix="+"
                                 label="Lat działalności"
                             />
                             <AnimatedCounter
-                                value={320}
+                                value={250}
                                 suffix="+"
-                                label="Członków"
+                                label="Strzelców i Orląt"
                             />
                             <AnimatedCounter
-                                value={48}
+                                value={70}
                                 suffix="+"
-                                label="Szkoleń rocznie"
+                                label="Szkoleń i zajęć rocznie"
                             />
                             <AnimatedCounter
-                                value={120}
-                                suffix="+"
+                                value={27}
+                                // suffix="+"
                                 label="Wolontariuszy"
                             />
                         </div>

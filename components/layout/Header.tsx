@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Logo } from '@/components/ui/Logo';
+import SocialIcons from '../ui/SocialIcons';
 
 interface NavItem {
     label: string;
@@ -84,6 +85,7 @@ export function Header() {
                             </Link>
                         );
                     })}
+                    <SocialIcons isHeader />
                 </nav>
 
                 <div className="flex lg:hidden items-center gap-2">
@@ -133,6 +135,9 @@ export function Header() {
                                         </Link>
                                     );
                                 })}
+                                <div className="flex justify-center">
+                                    <SocialIcons isHeader />
+                                </div>
                             </nav>
                         </div>
                     </motion.div>

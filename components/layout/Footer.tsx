@@ -84,7 +84,7 @@ export function Footer() {
                     </p>
                     <Link
                         className="mt-2 sm:mt-0 hover:underline"
-                        href="dashboard"
+                        href="/dashboard"
                     >
                         panel administracyjny
                     </Link>

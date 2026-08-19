@@ -34,27 +34,35 @@ export default function About() {
                         </div>
                     </Reveal>
                     <Reveal delay={0.15}>
-                        <div className="grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-card sm:p-10">
-                            <AnimatedCounter
-                                value={35}
-                                suffix="+"
-                                label="Lat działalności"
-                            />
-                            <AnimatedCounter
-                                value={250}
-                                suffix="+"
-                                label="Strzelców i Orląt"
-                            />
-                            <AnimatedCounter
-                                value={70}
-                                suffix="+"
-                                label="Szkoleń i zajęć rocznie"
-                            />
-                            <AnimatedCounter
-                                value={27}
-                                // suffix="+"
-                                label="Wolontariuszy"
-                            />
+                        <div className=" rounded-3xl bg-white p-8 shadow-card sm:p-10">
+                            <div className="pb-2 text-center">
+                                <p className="font-semibold">
+                                    Jednostka Strzelecka 2021
+                                </p>
+                                <p>w liczbach</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-6">
+                                <AnimatedCounter
+                                    value={35}
+                                    suffix="+"
+                                    label="Lat działalności"
+                                />
+                                <AnimatedCounter
+                                    value={250}
+                                    suffix="+"
+                                    label="Strzelców i Orląt"
+                                />
+                                <AnimatedCounter
+                                    value={70}
+                                    suffix="+"
+                                    label="Szkoleń i zajęć rocznie"
+                                />
+                                <AnimatedCounter
+                                    value={27}
+                                    // suffix="+"
+                                    label="Wolontariuszy"
+                                />
+                            </div>
                         </div>
                     </Reveal>
                 </div>

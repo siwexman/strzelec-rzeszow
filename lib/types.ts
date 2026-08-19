@@ -21,6 +21,7 @@ export type Post = {
         'wp:featuredmedia'?: WPImage[];
     };
     images: WPImage[];
+    attachments?: WPAttachment[];
 };
 
 export interface PostsReturned {
@@ -31,6 +32,15 @@ export interface PostsReturned {
 export interface WPImage {
     source_url: string;
     alt_text: string;
+}
+
+/** Non-image media attachment (PDF, doc, etc.) attached to a post */
+export interface WPAttachment {
+    id: number;
+    source_url: string;
+    filename: string;
+    mime_type: string;
+    title: string;
 }
 
 /** WordPress REST API — media attachment (wp/v2/media) */

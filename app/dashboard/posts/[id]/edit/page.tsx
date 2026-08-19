@@ -23,8 +23,8 @@ export default async function EditPostPage({ params }: Props) {
     }
 
     const featuredImage = post._embedded?.['wp:featuredmedia']?.[0];
-    const attachments = await getPostAttachments(session, post.id);
-    const gallery = attachments.filter(a => a.id !== post.featured_media);
+    const { images, files } = await getPostAttachments(session, post.id);
+    const gallery = images.filter(a => a.id !== post.featured_media);
 
     return (
         <div>
@@ -40,6 +40,7 @@ export default async function EditPostPage({ params }: Props) {
                     status: post.status,
                     featuredImage,
                     gallery,
+                    attachments: files,
                 }}
             />
         </div>

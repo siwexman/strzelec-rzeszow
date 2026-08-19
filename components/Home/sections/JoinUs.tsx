@@ -26,7 +26,7 @@ export default function JoinUs() {
                             charakter, uczy służby i buduje wspólnotę. Zapisy
                             trwają przez cały rok.
                         </p>
-                        <Link href="/rekrutacja" className="btn-accent mt-8">
+                        <Link href="/kontakt" className="btn-accent mt-8">
                             Skontaktuj się z nami <FaArrowRight size={18} />
                         </Link>
                     </div>

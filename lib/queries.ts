@@ -1,6 +1,7 @@
 'use server';
 
 import { Post, PostsReturned, WPImage, WPMedia } from './types';
+import { getPostAttachments } from './wp-admin';
 
 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 const revalidateTime = 600; // 10min in  seconds
@@ -66,7 +67,12 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     }
 
     const post = posts[0];
-    post.images = await getImages(post.id, post.slug, false);
+    const { images, files } = await getPostAttachments(
+        { username: '', appPassword: '' },
+        post.id,
+    );
+    post.images = images;
+    post.attachments = files;
 
     return post;
 }
@@ -83,6 +89,8 @@ async function getImages(
     });
 
     const attachments: WPMedia[] = await res.json();
+
+    // console.log(attachments.length);
 
     if (isOne) {
         const image: WPImage = {

@@ -1,6 +1,11 @@
-import 'server-only';
+'use server';
 
-import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'crypto';
+import {
+    createCipheriv,
+    createDecipheriv,
+    createHash,
+    randomBytes,
+} from 'crypto';
 import { cookies } from 'next/headers';
 
 const COOKIE_NAME = 'session';
@@ -34,7 +39,9 @@ export async function createSession(
     ]);
     const authTag = cipher.getAuthTag();
 
-    const value = [iv, authTag, ciphertext].map(b => b.toString('base64')).join('.');
+    const value = [iv, authTag, ciphertext]
+        .map(b => b.toString('base64'))
+        .join('.');
 
     const cookieStore = await cookies();
     cookieStore.set(COOKIE_NAME, value, {

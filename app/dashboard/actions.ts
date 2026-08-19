@@ -16,13 +16,15 @@ import {
 
 export type FormState = { error: string } | null;
 
+const MAX_GALLERY_IMAGES = 25;
+
 function readStatus(formData: FormData): PostStatus {
     return formData.get('status')?.toString() === 'draft' ? 'draft' : 'publish';
 }
 
-function readGalleryFiles(formData: FormData): File[] {
+function readFiles(formData: FormData, field: string): File[] {
     return formData
-        .getAll('gallery')
+        .getAll(field)
         .filter((f): f is File => f instanceof File && f.size > 0);
 }
 
@@ -40,7 +42,8 @@ export async function createPost(_prevState: FormState, formData: FormData): Pro
     const content = formData.get('content')?.toString() ?? '';
     const status = readStatus(formData);
     const featured = formData.get('featured');
-    const gallery = readGalleryFiles(formData);
+    const gallery = readFiles(formData, 'gallery').slice(0, MAX_GALLERY_IMAGES);
+    const attachments = readFiles(formData, 'attachments');
 
     try {
         const post = await createWPPost(session, { title, content, status });
@@ -51,6 +54,10 @@ export async function createPost(_prevState: FormState, formData: FormData): Pro
         }
 
         for (const file of gallery) {
+            await uploadWPMedia(session, file, { post: post.id });
+        }
+
+        for (const file of attachments) {
             await uploadWPMedia(session, file, { post: post.id });
         }
     } catch (err) {
@@ -79,7 +86,8 @@ export async function updatePost(_prevState: FormState, formData: FormData): Pro
     const content = formData.get('content')?.toString() ?? '';
     const status = readStatus(formData);
     const featured = formData.get('featured');
-    const gallery = readGalleryFiles(formData);
+    const gallery = readFiles(formData, 'gallery').slice(0, MAX_GALLERY_IMAGES);
+    const attachments = readFiles(formData, 'attachments');
     const removedIds = formData
         .getAll('removedMediaIds')
         .map(v => Number(v))
@@ -95,6 +103,10 @@ export async function updatePost(_prevState: FormState, formData: FormData): Pro
         }
 
         for (const file of gallery) {
+            await uploadWPMedia(session, file, { post: id });
+        }
+
+        for (const file of attachments) {
             await uploadWPMedia(session, file, { post: id });
         }
 
@@ -122,9 +134,9 @@ export async function deletePost(formData: FormData): Promise<void> {
     const id = Number(formData.get('id'));
     if (!id) return;
 
-    const attachments = await getPostAttachments(session, id);
-    for (const attachment of attachments) {
-        await deleteWPMedia(session, attachment.id);
+    const { images, files } = await getPostAttachments(session, id);
+    for (const media of [...images, ...files]) {
+        await deleteWPMedia(session, media.id);
     }
     await deleteWPPost(session, id);
 

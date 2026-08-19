@@ -5,9 +5,11 @@ import { notFound } from 'next/navigation';
 import { FaArrowLeft, FaCalendar } from 'react-icons/fa';
 
 import { Gallery } from '@/components/News/Gallery';
+import { Attachments } from '@/components/News/Attachments';
 import { Reveal } from '@/components/ui/animation/Reveal';
 import { getPostBySlug } from '@/lib/queries';
 import { formatDate, stripHtml } from '@/utils/format';
+import { getPostAttachments } from '@/lib/wp-admin';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -74,6 +76,17 @@ export default async function NewsDetailPage({ params }: Props) {
                         <h2 className="text-xl font-bold">Galeria</h2>
                         <div className="mt-6">
                             <Gallery images={post.images} />
+                        </div>
+                    </Reveal>
+                </div>
+            )}
+
+            {post.attachments && post.attachments.length > 0 && (
+                <div className="container-content mt-14 max-w-3xl">
+                    <Reveal delay={0.2}>
+                        <h2 className="text-xl font-bold">Załączniki</h2>
+                        <div className="mt-6">
+                            <Attachments files={post.attachments} />
                         </div>
                     </Reveal>
                 </div>

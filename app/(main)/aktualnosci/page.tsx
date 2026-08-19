@@ -13,7 +13,7 @@ export default function News() {
     return (
         <>
             <section className="section">
-                <div className="container-content">
+                <div className="container-content pb-2">
                     <Reveal>
                         <p className="eyebrow">Aktualności</p>
                         <h1 className="mt-2 max-w-3xl text-3xl font-bold sm:text-4xl lg:text-5xl">

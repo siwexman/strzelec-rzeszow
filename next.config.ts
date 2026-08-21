@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
         ],
         dangerouslyAllowLocalIP: true,
     },
+    output: 'standalone',
 };
 
 export default nextConfig;
